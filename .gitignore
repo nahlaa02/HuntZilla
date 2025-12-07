@@ -1,0 +1,14 @@
+# Node.js dependencies
+node_modules/
+
+# Ignore configuration and secret files
+# IMPORTANT: Never commit files that contain passwords or keys.
+.env
+config.js
+api-keys.txt
+secrets.json
+
+# Ignore build artifacts and local development files
+*.zip
+*.log
+*.sqlite
