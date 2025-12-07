@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Huntzilla 2025</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap 5.3.3 References -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Link to FontAwesome 6.5.2 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- Your custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
+    <!-- Your custom JavaScript -->
+    <script src="js/app.js"></script>
+    <!-- Link to image for the favicon -->
+    <link rel="icon" href="images/TU100x100.png">
+</head>
+
+<body>
+
+<!-- Top Navigation Bar -->
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <!-- Logo -->
+      <a class ="navbar-brand" href="index.html">
+          <img alt="TU Logo" src="images/TU100x100.png" style="width:40px;">
+          <span style="font-size: 1.25em;" >&nbsp;&nbsp;Huntzilla 2025</span>
+      </a>
+
+    <!-- Toggler Icon for responsiveness -->
+    <button id="toggle-icon" class="navbar-toggler secured locked" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar" aria-label="Toggle Icon" >
+    <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse secured locked" id="collapsibleNavbar">
+        <!--Menu sets on the right -->
+        <!--Each individual item can be secured by adding the class: secured -->
+        <ul class="navbar-nav ms-auto secured locked">
+            <li class="nav-item secured">
+                <a id="link-leaderboard" class="nav-link" href="#"><i class="fa fa-link"></i> Leaderboard </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-home" class="nav-link" href="#"><i class="fa fa-home"></i> Home </a>
+            </li>
+            <li class="nav-item secured">
+                <a id="link-logout" class="nav-link" href="#"><i class="fa fa-sign-out"></i>Logout</a>
+            </li>
+        </ul>
+        &nbsp;&nbsp;    
+    </div>
+</nav>
+
+<br><br><br><br>
+
+<!--Start container for Bootstrap formatting-->
+<div class="container-fluid">
+
+    <div class="row text-center">
+        <div class="col-md-12">
+            &nbsp; <!-- place holder for additional top row content -->
+        </div>
+    </div>
+
+    <div class="row">
+    <div class="col-md-2 d-none d-md-block">&nbsp;</div>
+
+        <!-- LOGIN -->
+        <div class="col-12 col-md-8 mx-auto content-wrapper" id="div-login" style="display: none;">
+            <h1>
+                <i class="fa-solid fa-crow fa-pulse text-danger"></i>
+                Huntzilla
+            </h1>
+            <form id='form-login'>
+                <label for="username">User name:</label>
+                <input type="text" name="username" id="username" class="form-control" >
+                <label for="password">Password:</label>
+                <div class="input-group mb-3">
+                    <input type="password" name="password" id="password" class="form-control">
+                    <!-- ADDED aria-label -->
+                    <button type="button" id="btnTogglePassword" class="btn btn-outline-secondary" aria-label="Show password">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                </div>
+                <br>
+                <div class="text-center">
+                    <input type="button" value="Login" id="btnLogin" class="btn btn-primary" style="font-size:2em;width:100%;" >
+                </div>
+                <div class="text-end small mt-2">
+                    <a href="#" id="link-forgot">Forgot Password?</a>
+                </div>
+                <br>
+                <div id='login_message'></div>
+            </form>
+        </div>
+       
+        <!-- WELCOME -->
+        <div class="col-12 col-md-8 mx-auto content-wrapper text-center" id="div-welcome" style="display: none;">
+            <h1 class="fw-bold mb-4">Welcome to Huntzilla 2025!</h1>
+            <p class="fs-5"> Are you ready for some Scavenger Hunt fun? <strong>Click "Start Game" to begin!</strong> </p>
+            
+            <!-- For any start-game error messages -->
+            <div id="welcome_message" class="mb-3"></div>
+
+            <div class="text-center">
+                <input type="button" value="Start Game" id="btnStartGame" class="btn btn-primary" style="font-size:2em;width:100%;" >
+            </div> <br>
+            <div class="text-center">
+                <input type="button" value="Leaderboard" id="btnLeaderboard" class="btn btn-warning" style="font-size:2em;width:100%;" >
+            </div> <br>
+            <div class="text-center">
+                <input type="button" value="Quit" id="btnQuit" class="btn btn-danger" style="font-size:2em;width:100%;" >
+            </div>
+        </div>
+
+        <!-- LEADERBOARD -->
+        <div class="col-12 col-md-8 mx-auto content-wrapper" id="div-leaderboard" style="display: none;">
+            <div id="leaderboard-ribbon-container" class="mb-4">
+                <h1 class="text-center fw-bold">Leaderboard</h1>
+            </div>
+            <p class='text-center fs-5 pt-2'>
+                <i class='fa-solid fa-award' style='color: #ffd700;'></i>&nbsp;
+                <strong>Top 5 Best Times</strong>
+                &nbsp;<i class='fa-solid fa-award' style='color: #ffd700;'></i>
+            </p>
+            <div class='row justify-content-center mb-3'>
+                <div class='col-8 col-lg-6'>
+                    <div class="input-group">
+                        <!-- ADDED real label for the search input -->
+                        <label for="username-search" class="visually-hidden">Filter by Username</label>
+                        <input type="text" id="username-search" class="form-control" placeholder="Filter by Username">
+                        <button id="btnSearchLeaderboard" class="btn btn-outline-primary" type="button">Search</button>
+                    </div>
+                </div>
+            </div>
+            <div id="leaderboard-content" class="card p-3 mb-3"></div>
+            <div class="text-center">
+                <div id="leaderboard-error-msg" class="mb-2"></div>
+                <input type="button" value="Home" id="btnHome" class="btn btn-primary" style="font-size:2em;width:50%;" >
+            </div>
+        </div>
+
+        <!-- GAME -->
+        <div class="col-12 col-md-8 mx-auto content-wrapper" id="div-game" style="display: none;">
+            <div class="alert alert-info text-center fw-bold p-3 mb-4">
+                <h1>
+                    <i class='fa-solid fa-compass me-3 text-success'></i>
+                    Get Hunting
+                </h1>
+            </div>
+            <div class="d-flex justify-content-center align-items-center mb-2">
+                <span class="fs-5 fw-bold">Temple Treasure Hunt</span>
+                <i class='fa-solid fa-map-location-dot fa-2x text-info ms-2'></i>
+            </div>
+
+            <!-- Timer + progress row -->
+            <div class="row my-3">
+                <div class="col-6 text-start">
+                    <span id="game-timer" class="badge bg-dark fs-6">Time: 0s</span>
+                </div>
+                <div class="col-6 text-end">
+                    <span id="game-progress-text" class="badge bg-secondary fs-6">
+                        Questions solved: 0/3
+                    </span>
+                </div>
+            </div>
+
+            <!-- Progress bar -->
+            <div class="progress mb-4">
+                <div id="progress-bar" class="progress-bar" role="progressbar"
+                     style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                </div>
+            </div>
+
+            <br>
+
+            <div id="question-container-1" class="p-4 mb-4 rounded-lg shadow-sm bg-light">
+                <label id="q1" for="a1">Question 1</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="a1" class="form-control" placeholder="Your Answer" style="margin-bottom:10px;">
+                    <button id="btnCheck1" class="btn btn-primary">Check</button>
+                </div>
+                <div id="msg1" class="mb-2"></div>
+            </div>
+
+            <div id="question-container-2" class="p-4 mb-4 rounded-lg shadow-sm bg-light">
+                <label id="q2" for="a2" style="margin-top:15px;">Question 2</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="a2" class="form-control" placeholder="Your Answer" style="margin-bottom:10px;">
+                    <button id="btnCheck2" class="btn btn-primary">Check</button>
+                </div>
+                <div id="msg2" class="mb-2"></div>
+            </div>
+
+            <div id="question-container-3" class="p-4 mb-4 rounded-lg shadow-sm bg-light">
+                <label id="q3" for="a3" style="margin-top:15px;">Question 3</label>
+                <div class="input-group mb-3">
+                    <input type="text" id="a3" class="form-control" placeholder="Your Answer" style="margin-bottom:10px;">
+                    <button id="btnCheck3" class="btn btn-primary">Check</button>
+                </div>
+                <div id="msg3" class="mb-2"></div>
+            </div>
+
+            <div class="text-center">
+                <div id="game_message" class="mb-2"></div>
+                <br>
+                <input type="button" value="End Game" id="btnEndGame" class="btn btn-success" style="font-size:2em;width:25%;">
+                <input type="button" value="Quit" id="btnQuitGame" class="btn btn-danger" style="font-size:2em;width:25%;">
+            </div>
+        </div>
+
+        <!-- GAME OVER / RESULTS -->
+        <div class="col-12 col-md-8 mx-auto content-wrapper" id="div-confirm" style="display: none;">
+            <h2 class="text-center mb-3">Game Over</h2>
+            <img src="images/check_high.png" alt="" style="display:block; margin-left:auto; margin-right:auto; max-width:80%; height:auto;">
+            <br>
+
+            <!-- Results box -->
+            <div id="results-box" class="card mx-auto p-3 text-center" style="max-width: 400px;">
+                <h4 class="text-success mb-2">
+                    <i class="fa-solid fa-circle-check"></i>
+                    You answered all questions!
+                </h4>
+                <p id="results-time" class="fs-5 mb-0">
+                    <!-- JS fills this with the time -->
+                </p>
+            </div>
+
+            <br>
+            <div class="text-center">
+                <input type="button" value="Quit" id="btnConfirmQuit" class="btn btn-primary" style="font-size:2em;width:25%;">
+            </div>
+        </div>
+
+
+    <div class="col-md-2 d-none d-md-block"></div>
+    </div>
+
+<div class="row">
+    <div class="col-md-12 text-center">
+        <div>
+            &nbsp;
+        </div>
+    </div>
+</div>
+
+</div> <!-- container //-->
+
+
+<br>
+    <div class="container-fluid bg-dark text-white">
+        <div class="row">
+            <div class="col-md-12 text-center">
+            &copy; 2025 MIS3502 - Huntzilla 2025 (Spring 2025) - Nahla Abuali
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                &nbsp; <!-- place holder for additional footer content -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

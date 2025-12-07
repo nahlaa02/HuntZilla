@@ -1,0 +1,18 @@
+/* Leaderboard row styles */
+.rank-gold {
+    background-color: #ffe066 !important;
+    border-left: 6px solid #ffd700 !important;
+}
+.rank-silver {
+    background-color: #e0e0e0 !important;
+    border-left: 6px solid #c0c0c0 !important;
+}
+.rank-bronze {
+    background-color: #f4e2d8 !important;
+    border-left: 6px solid #cd7f32 !important;
+}
+
+/* Trophy icon spacing */
+.trophy-icon {
+    margin-right: 15px;
+}

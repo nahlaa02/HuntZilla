@@ -1,0 +1,129 @@
+/* ----------------------------------------------------
+ * CSS Prompt to REMOVE GLOBAL STYLES and Create Specific Login Styles
+ * ---------------------------------------------------- */
+
+/* 1. Remove global centering and background styles from body and .container-fluid */
+/* Commented out or removed:
+body {
+    background: linear-gradient(180deg,
+                #333333 0%,  
+                #7c2323 15%,  
+                #f0f0f0 100%);
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-size: 1.25rem;
+}
+html, body {
+    height: 100%;
+}
+.container-fluid {
+    min-height: 400px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+}
+body > .container-fluid {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+*/
+
+/* 2. Define a new class for the LOGIN page centering and background styles */
+.login-page-bg {
+    /* 1. Set body to be a Flex container and take full height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Full viewport height */
+   
+    /* 2. Apply Temple Cherry Gradient Background */
+    background: linear-gradient(180deg,
+                #333333 0%,  
+                #7c2323 15%,  
+                #f0f0f0 100%);
+    background-attachment: fixed;
+}
+
+.login-page-bg .container-fluid {
+    /* 3. Target the main Bootstrap container inside the flex body (CRUCIAL STEP) */
+    flex-grow: 1; /* Allows the container to fill the vertical space */
+    display: flex;
+    align-items: center; /* **Aligns the content vertically in the middle** */
+    justify-content: center; /* Ensures the content is horizontally centered too */
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Retain other component-specific styles below */
+label{
+    margin-top:10px;
+}
+.btn-default{
+    background-color: #CCC;
+    color: black;
+}
+.btn {
+    white-space:normal;
+}
+.locked {
+    display: none !important;
+}
+.unlocked {
+    border-width: initial;
+}
+.secured {
+    border-width: initial;
+}
+/* Leaderboard row styles */
+.rank-gold {
+    background-color: #ffe066 !important;
+    border-left: 6px solid #ffd700 !important;
+    color: #d4a700 !important;
+}
+.rank-silver {
+    background-color: #e0e0e0 !important;
+    border-left: 6px solid #c0c0c0 !important;
+    color: #7b7b7b !important;
+}
+.rank-bronze {
+    background-color: #f4e2d8 !important;
+    border-left: 6px solid #cd7f32 !important;
+    color: #964b00 !important;
+}
+.trophy-icon {
+    margin-right: 15px;
+}
+.rank-gold span.fw-bold {
+    color: #d4a700 !important;
+}
+.rank-silver span.fw-bold {
+    color: #7b7b7b !important;
+}
+.rank-bronze span.fw-bold {
+    color: #964b00 !important;
+}
+.trophy-gold {
+    color: #ffd700 !important;
+}
+.trophy-silver {
+    color: #c0c0c0 !important;
+}
+.trophy-bronze {
+    color: #cd7f32 !important;
+}
+.content-wrapper {
+    min-height: 400px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 40px !important;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+#div-login {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+}
